@@ -129,20 +129,17 @@ export class HelloWorldPanel {
         // );
 
         // Local path to css styles
-        // const styleResetPath = vscode.Uri.joinPath(
-        //   this._extensionUri,
-        //   "media",
-        //   "reset.css"
-        // );
-        // const stylesPathMainPath = vscode.Uri.joinPath(
-        //   this._extensionUri,
-        //   "media",
-        //   "vscode.css"
-        // );
-
         // Uri to load styles into webview
-        // const stylesResetUri = webview.asWebviewUri(styleResetPath);
-        // const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
+        const stylesResetUri = webview.asWebviewUri(vscode.Uri.joinPath(
+          this._extensionUri,
+          "media",
+          "reset.css"
+        ));
+        const stylesMainUri = webview.asWebviewUri(vscode.Uri.joinPath(
+          this._extensionUri,
+          "media",
+          "vscode.css"
+        ));
         // const cssUri = webview.asWebviewUri(
         //   vscode.Uri.joinPath(this._extensionUri, "out", "compiled/swiper.css")
         // );
@@ -162,12 +159,15 @@ export class HelloWorldPanel {
           webview.cspSource
         }; script-src 'nonce-${nonce}';">
 	    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="" rel="stylesheet">
+            <link href="${stylesResetUri}" rel="stylesheet">
+            <link href="${stylesMainUri}" rel="stylesheet">
             <script nonce="${nonce}">
             </script>
 	    		</head>
 						<body>
-					  		<h1> Hello world </h1>
+                <h1> Hello world </h1>
+                <input />
+                <button> Hello </button>
 	    				</body>
 	    		</html>`;
   	} 
